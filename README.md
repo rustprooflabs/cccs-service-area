@@ -45,7 +45,12 @@ Data under the `./export/` directory is exported from PostGIS.
 
 ### GeoJSON
 
-The GeoJSON export is easy to create, requires PostGIS 3.
+The GeoJSON is created by loading the PostGIS layer into QGIS and
+exporting as GeoJSON FeatureCollection. 
+
+
+With PostGIS 3 this query can be used to export each row as a
+GeoJSON Feature.
 
 ```sql
 SELECT ST_AsGeoJSON(sa.*) AS geojson 
