@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=cccs_service_area
+%uri=https://github.com/rustprooflabs/cccs-service-area
+
+001 2020-03-08T15:21:17Z Ryan Lambert <ryan@rustprooflabs.com> # Initial schema
