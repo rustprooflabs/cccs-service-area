@@ -22,17 +22,34 @@ cd ./db
 sqitch deploy db:pg:cccs 
 ```
 
-Load data into empty database
+Load data into empty database.
 
 ```bash
 cd cccs-service-area/db
 psql -d cccs -f ./data/load_service_areas.sql
 ```
 
-## PostgreSQL 10 minimum
+### PostgreSQL / PostGIS minimums
 
-Primary key column(s) use the `IDENTITY` syntax for auto-incrementing IDs,
-availalbe with Postgres 10 and newer.
+PostgreSQL 10 is required to create the database schema.
+Primary key column(s) use the `IDENTITY` syntax for auto-incrementing IDs.
+
+PostGIS 3 is required to export the GeoJSON data with the query
+provided below.  The `ST_GeoJSON(record)` version of the function was
+introduced in [PostGIS 3](https://postgis.net/docs/ST_AsGeoJSON.html).
 
 
+## Data Exports
+
+Data under the `./export/` directory is exported from PostGIS.
+
+### GeoJSON
+
+The GeoJSON export is easy to create, requires PostGIS 3.
+
+```sql
+SELECT ST_AsGeoJSON(sa.*) AS geojson 
+	FROM cccs.service_area sa
+;
+```
 
